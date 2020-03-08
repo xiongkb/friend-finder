@@ -3,11 +3,11 @@ const friendList = require("../data/friend");
 
 // routing
 module.exports = function(app) {
-    app.get("/friendlist/", function(req, res) {
+    app.get("/api/friendlist/", function(req, res) {
         res.json(friendList);
     });
 
-    app.post("/friendlist/", function(req, res) {
+    app.post("/api/friendlist/", function(req, res) {
         console.log(req);
     })
 }
