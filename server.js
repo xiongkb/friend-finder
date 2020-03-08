@@ -1,15 +1,17 @@
 // starting variables
-var express = require("express");
-var app = express();
-var PORT = process.env.PORT || 8080;
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 // setting up express
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // connecting the routes
-require("./app/routing/apiRoutes");
-require("./app/routing/htmlRoutes");
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 // adding a listener to check that it's running
 app.listen(PORT, function() {
