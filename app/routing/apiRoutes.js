@@ -8,7 +8,24 @@ module.exports = function(app) {
     });
 
     app.post("/api/friendlist/", function(req, res) {
-        friendList.push({ ...req.body, scores: req.body.scores.map(score => JSON.parse(score)) });
-        res.json(friendList);
+        // calculating match
+        const user = { ...req.body, scores: req.body.scores.map(score => JSON.parse(score)) }
+        let lowestScore = 9999;
+        let closestFriendIndex = -1;
+        
+        for (let i = 0; i < friendList.length; i++) {
+            let totalDiffScore = 0;
+            for (let j = 0; j < 10; j ++) {
+                totalDiffScore += Math.abs(friendList[i].scores[j] - user.scores[j]);
+            };
+            
+            if (totalDiffScore < lowestScore) {
+                lowestScore = totalDiffScore;
+                closestFriendIndex = i;
+            }
+        };
+
+        friendList.push(user);
+        res.json({name: friendList[closestFriendIndex].name, photo: friendList[closestFriendIndex].photo});
     })
 }

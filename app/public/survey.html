@@ -29,15 +29,15 @@
       <div class="card">
         <p class="card-header">1. You like mint flavored ice cream.</p>
         <div class="card-body">
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline radioQ">
             <input class="form-check-input" type="radio" name="question1" id="q1" value="1">
             <label class="form-check-label" for="q1">1</label>
           </div>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline radioQ">
             <input class="form-check-input" type="radio" name="question1" id="q2" value="2">
             <label class="form-check-label" for="q2">2</label>
           </div>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline radioQ">
             <input class="form-check-input" type="radio" name="question1" id="q3" value="3">
             <label class="form-check-label" for="q3">3</label>
           </div>
@@ -321,8 +321,12 @@
         // post
         $.post("/api/friendlist", newFriend, function(data) {
           if (data) {
-            alert("added you!")
+            alert("Your new friend is: " + data.name + data.photo);
           }
+          $("#yourName").val("");
+          $("#yourPic").val("");
+
+
         });
       });
     </script>

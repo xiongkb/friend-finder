@@ -2,7 +2,7 @@
 let friendListArr = [
     {
         "name":"Ahmed",
-        "photo":"https://picsum.photos/300/400",
+        "photo":"https://picsum.photos/400/300",
         "scores":[
             5,
             1,
@@ -18,7 +18,7 @@ let friendListArr = [
       },
       {
         "name":"Flora",
-        "photo":"https://picsum.photos/300/400",
+        "photo":"https://picsum.photos/400/300",
         "scores":[
             5,
             2,
@@ -34,7 +34,7 @@ let friendListArr = [
       },
       {
         "name":"Coco Bean",
-        "photo":"https://picsum.photos/300/400",
+        "photo":"https://picsum.photos/400/300",
         "scores":[
             1,
             2,
@@ -50,7 +50,7 @@ let friendListArr = [
       },
       {
         "name":"Vanilla Bean",
-        "photo":"https://picsum.photos/300/400",
+        "photo":"https://picsum.photos/400/300",
         "scores":[
             4,
             3,
@@ -66,7 +66,7 @@ let friendListArr = [
       },
       {
         "name":"Carol",
-        "photo":"https://picsum.photos/300/400",
+        "photo":"https://picsum.photos/400/300",
         "scores":[
             2,
             3,
@@ -82,7 +82,7 @@ let friendListArr = [
       },
       {
         "name":"Jane Doe",
-        "photo":"https://picsum.photos/300/400",
+        "photo":"https://picsum.photos/400/300",
         "scores":[
             3,
             4,
