@@ -8,6 +8,7 @@ module.exports = function(app) {
     });
 
     app.post("/api/friendlist/", function(req, res) {
-        console.log(req);
+        friendList.push({ ...req.body, scores: req.body.scores.map(score => JSON.parse(score)) });
+        res.json(friendList);
     })
 }
