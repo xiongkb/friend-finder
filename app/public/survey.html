@@ -276,10 +276,12 @@
           </div>
         </div>
       </div>
+      <!-- submit button + modal button -->
+      <button class="btn btn-primary submit" type="submit">Submit</button>
     </form>
 
-    <!-- submit button + modal button -->
-    <button class="btn btn-primary submit" type="submit">Submit</button>
+    
+    
     <hr>
 
 <!-- Modal -->
@@ -327,27 +329,42 @@
      <script type="text/javascript">
       $(".submit").on("click", function(event) {
         event.preventDefault();
-
+        const name = $("#yourName").val().trim();
+        const photo = $("#yourPic").val().trim();
         let score = [];
 
         for (let i = 1; i < 11; i++) {
           score.push($('input[name="question' + i + '"]:checked').val());
         };
 
-        let newFriend = {
-          name: $("#yourName").val().trim(),
-          photo: $("#yourPic").val().trim(),
-          scores: score,
-        };
+        let allScoresHaveValues = true;
 
-        console.log(newFriend.scores);
+        for(let i = 0; i < 10; i++) {
+          if (!score[i]) {
+            allScoresHaveValues = false;
+          }
+        }
 
-        // post
-        $.post("/api/friendlist", newFriend, function(data) {
-            $("#friend-name").text(data.name);
-            $("#friend-pic").attr("src", data.photo);
-            $("#matchedFriend").modal("toggle");
-        });
+        if (!name) {
+          alert('Please enter a name!');
+        } else if (!photo) {
+          alert('Please enter a link to a photo of you!');
+        } else if (!allScoresHaveValues) {
+          alert ('Please checked that you answered all the question!');
+        } else {
+          let newFriend = {
+            name: name,
+            photo: photo,
+            scores: score,
+          };
+
+          // post
+          $.post("/api/friendlist", newFriend, function(data) {
+              $("#friend-name").text(data.name);
+              $("#friend-pic").attr("src", data.photo);
+              $("#matchedFriend").modal("toggle");
+          });
+        }
       });
     </script>
   </body>
