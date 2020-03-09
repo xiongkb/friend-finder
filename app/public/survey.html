@@ -14,7 +14,7 @@
       <h1>Friend Finder Survey</h1>
       <p>
         First enter your name and a picture link below. Then on a scale of 1(disagree) to 5(agree), select how much you agree 
-        with the statment.
+        with the question.
       </p>
     </div>
     <!-- the 10 question -->
@@ -363,6 +363,13 @@
               $("#friend-name").text(data.name);
               $("#friend-pic").attr("src", data.photo);
               $("#matchedFriend").modal("toggle");
+
+              $("#yourName").val("");
+              $("#yourPic").val("");
+              for (let i = 1; i < 11; i++){
+               $('input[name="question' + i + '"]').prop('checked', false);
+              }
+
           });
         }
       });
