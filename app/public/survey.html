@@ -278,16 +278,38 @@
       </div>
     </form>
 
-    <!-- submit button -->
+    <!-- submit button + modal button -->
     <button class="btn btn-primary submit" type="submit">Submit</button>
     <hr>
 
+<!-- Modal -->
+<div class="modal fade" id="matchedFriend" tabindex="-1" role="dialog" aria-labelledby="modalstuff" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalstuff">Here is your matched Friend!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="friendInfo">
+        <h4 id="friend-name"></h4>
+        <img id="friend-pic" style="width: 400px;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <!-- links for friendlist and homepage -->
-    <div>
+    <footer>
       <a href="/">Homepage</a>
       |
       <a href="/api/friendlist">API Friend List</a>
-    </div>
+    </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
@@ -318,15 +340,13 @@
           scores: score,
         };
 
+        console.log(newFriend.scores);
+
         // post
         $.post("/api/friendlist", newFriend, function(data) {
-          if (data) {
-            alert("Your new friend is: " + data.name + data.photo);
-          }
-          $("#yourName").val("");
-          $("#yourPic").val("");
-
-
+            $("#friend-name").text(data.name);
+            $("#friend-pic").attr("src", data.photo);
+            $("#matchedFriend").modal("toggle");
         });
       });
     </script>
